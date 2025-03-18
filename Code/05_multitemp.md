@@ -17,3 +17,4 @@ The output will be something like:
 
 <img src="../Pics/difgreen.jpeg" width=50% />
 
+> Note: information about the Copernicus program can be found at the [Copernicus page](https://www.copernicus.eu/)
