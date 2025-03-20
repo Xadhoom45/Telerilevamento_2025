@@ -1,5 +1,5 @@
 # 18/03/2025
-
+install.packages("ggridges") #This is needed to create ridgeline plots
 library(imageRy)
 library(terra)
 library(viridis)
@@ -33,5 +33,32 @@ plot(gr[[4]], col=rocket(100))
 grdif = gr[[1]] - gr[[4]]
 dev.off() 
 plot(grdif)
+
+# ridgeline plots
+im.ridgeline(gr, scale=1)
+im.ridgeline(gr, scale=2)
+im.ridgeline(gr, scale=2, palette="inferno")
+
+im.list()
+
+# Exercise import the NDVi data from sentinel 
+
+ndvi = im.import("Sentinel2_NDVI")
+
+im.ridgeline(ndvi, scale=2, palette="inferno")  # in questo momento il nome dei file è ndvi per tutti, se faccio ridgeline me ne plotta solo 1, 
+# devo cambiare nome ai dataset
+
+# Changing names
+# sources    :Sentinel2_NDVI_2020-02-21.tif  
+#             Sentinel2_NDVI_2020-05-21.tif  
+#             Sentinel2_NDVI_2020-08-01.tif  
+#             Sentinel2_NDVI_2020-11-27.tif 
+
+
+
+                 
+names(ndvi) = c("02_Feb", "05_May", "08_Aug", "11_Nov")
+
+im.ridgeline(ndvi, scale=2, palette="inferno")
 
 
