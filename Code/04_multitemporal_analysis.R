@@ -59,6 +59,26 @@ im.ridgeline(ndvi, scale=2, palette="inferno")  # in questo momento il nome dei 
                  
 names(ndvi) = c("02_Feb", "05_May", "08_Aug", "11_Nov")
 
+im.ridgeline(ndvi, scale=2)
 im.ridgeline(ndvi, scale=2, palette="inferno")
+
+pairs(ndvi)
+
+plot(ndvi[[1]], ndvi[[2]])
+# y = x # may y, feb x 
+# y = a + bx
+# a=0, b=1
+# y = a + bx = 0 + 1x = x
+
+abline(0, 1, col="red")
+
+plot(ndvi[[1]], ndvi[[2]], xlim=c(-0.3,0.9), ylim=c(-0.3,0.9))
+abline(0, 1, col="red")
+
+im.multiframe(1,3)
+plot(ndvi[[1]])
+plot(ndvi[[2]])
+plot(ndvi[[1]], ndvi[[2]], xlim=c(-0.3,0.9), ylim=c(-0.3,0.9))
+abline(0, 1, col="red")
 
 
