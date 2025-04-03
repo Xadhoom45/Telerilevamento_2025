@@ -43,7 +43,7 @@ y1992 = c(83,17)
 y2006 = c(45,55)
 tabout = data.frame(class, y1992, y2006)
 
-p1 = ggplot(tabout, aes(x=class, y=y1992, color=class)) + 
+p1 = ggplot(tabout, aes(x=class, y=y1992, fill="class", color=class)) + 
   geom_bar(stat="identity", fill="white") +
   ylim(c(0,100))
 
