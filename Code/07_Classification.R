@@ -59,3 +59,49 @@ p00 = im.ggplot(mato2006)
 
 p0 + p00 + p1 + p2 # plotto i 4 grafici
 
+#----- Solar Orbiter
+
+im.list()
+
+solar = im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
+
+# EX classify the image in 3 classes - im.classify()
+
+solarc = im.classify(solar, num_cluster=3)
+
+# EX plot the original images beside teh classified one
+
+im.multiframe(1,2)
+plot(solar)
+plot(solarc)
+
+# 3 = low
+# 1 = medium
+# 2 = high
+
+solarcs = subst(solarc, c(3 , 1 , 2), c("c1_low", "c2_medium", "c3_high"))  # classify suddivide in classi in modo casuale, con questa funzione posso assegnare le varie clssi e rioordinarle
+plot(solarcs)
+
+# Ex calculate the percentuages fo the sun energy classes with one line of code
+
+percsolar = freq(solarcs) * 100 / ncell(solarcs)  # non funziona perchè moltiplica * 100 anche il parametro del nome, devo dirgli di
+  # prendere la colonnina solo del count
+
+percsolar = freq(solarcs)$count * 100 / ncell(solarcs)# così è corretto, moltiplica solo il campo count e non il campo value( dove è riportato il nome
+
+# 37.92693 41.04342 21.02965
+
+# create dataframe
+class = c("c1_low","c2_medium","c3_high")
+perc = c(38,41,21)
+tabsol = data.frame(class, perc)
+
+# final ggplot
+
+p1 = ggplot(tabsol, aes(x=class, y=perc, fill=class, color=class)) + 
+  geom_bar(stat="identity")
+
+  
+
+
+
