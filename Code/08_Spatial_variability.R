@@ -83,5 +83,79 @@ p1 + p2 + p3
 p3 + p1 + p2
 
 
+# What to do in case of huge images, -> reduce sample
 
+sent = im.import("sentinel.png")
 
+sent=flip(sent)
+plot(sent)
+
+ncell(sent) # scopriamo definizione dell'immagine 794*798 = 633612
+
+ncell(sent) * nlyr(sent) # 633612 * 4 = 2534448
+
+senta = aggregate(sent, fact=2) # ho preso il pixel iniziale e lo moltiplico di 2, nuova risoluzione é 2*2, prima un pixel era 1*1
+# ho aumentato grandezzza pixel -> quindi risotto definizione immagine
+senta
+ncell(senta) * nlyr(senta)
+
+senta5 = aggregate(sent, fact=5)
+
+ncell(senta5) * nlyr(senta5) #101760
+# 2534448/101760 = 24.90613 ; non è perfettametìnte 25, ha avuto problemi a ricampionare ai bordi
+
+# calculating standard deviation
+nira = senta[[1]]
+sd3a = focal(nira, w=c(3,3), fun="sd")
+
+  # EX: make a multiframe and plot in RGB the three images (or, 2, 5)
+
+im.multiframe(1,3)
+im.plotRGB(sent, 1, 2, 3)
+im.plotRGB(senta, 1, 2, 3)
+im.plotRGB(senta5, 1, 2, 3) # posso osservare la diversa definizione delle 3 imaginni, senta5 è 25 volte meno definita di sent
+
+  #EX: calculate the standard deviation for the factor 5 image
+
+nira5 = senta5[[1]]
+sd3a5 = focal(nira, w=c(3,3), fun="sd")
+plot(sd3a5)
+
+sd5a5 = focal(nira, w=c(5,5), fun="sd")
+plot(sd5a5)
+
+im.multiframe(1,2)
+plot(sd5a5)
+plot(sd3a)
+
+im.multiframe(2,2)
+plot(sd3)
+plot(sd3a)
+plot(sd3a5)
+plot(sd5a5)
+
+p1 = im.ggplot(sd3)
+p2 = im.ggplot(sd3a)
+p3 = im.ggplot(sd3a5)
+p4 = im.ggplot(sd5a5)
+
+p1 + p2 + p3 + p4
+
+# Variance
+# nir
+var3 = sd3^2 # aumento delle parti estreme -> varianza probabilità???
+
+dev.off()
+plot(var3)
+
+im.multiframe(1,2)
+plot(sd3)
+plot(var3)
+
+sd5 = focal(nir, w=c(5,5), fun="sd")
+var5 = sd5^2
+plot(sd5)
+
+im.multiframe(1,2)
+plot(sd5)
+plot(var5)
