@@ -5,4 +5,4 @@ https://numxl.com/blogs/principal-component-analysis-pca-101/).
 
 A graphical sketch is the following:
 
-<img src="pca.png
+<img src="../Pics/pca.png">
