@@ -76,26 +76,26 @@ plot(b3, col=cl)
 plot(b4, col=cl)
 plot(b8, col=cl)
 
-sent = c(b2, b3, b4, b8)
+sent = c(b2, b3, b4, b8) # Modo più veloce per plottare le 4 immagini. Combino le 4 immagini in un vettore con c
 plot(sent, col=cl)
 
-names(sent) = c("b2-blue", "b3-green", "b4-red", "b8-NIR")
-sent
+names(sent) = c("b2-blue", "b3-green", "b4-red", "b8-NIR") # Rinomino le 4 immagini
+sent # richiamo il vettore per vedere le sue proprieta, posso vedere sotto names che ho cambiato i nomi 
 
 plot(sent, col=cl)
 plot(sent)
 
-names(sent) = c("b2blue", "b3green", "b4red", "b8NIR")
+names(sent) = c("b2blue", "b3green", "b4red", "b8NIR") 
 dev.off()
-plot(sent$b8NIR)
+plot(sent$b8NIR) # plotta l'elemento del vettore sent chiamato b8NIR
 
-plot(sent[[4]])
+plot(sent[[4]]) # plotta il quarto elemento del vettore sent
 
 # importing several bands altogether
-sentdol = im.import("sentinel.dolomites")
+sentdol = im.import("sentinel.dolomites") # importo tutte le bande con questo nome presenti nel pacchetto imageRy
 
-# How to import severla sets altogether
-pairs(sentdol)]
+# How to import several sets altogether
+pairs(sentdol) #?
 plot(sentdol[[4]])
 plot(sentdol[[4]], col=inferno(100))
 
@@ -107,7 +107,8 @@ plot(sentdol, col=magma(100))
 # Viridis colors:
 # https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 
-# Layers
+# Layers  -->  I layer sono così perchè ho creato con sentdol = c(...) uno SpatRaster scrivendo in questo ordine le singole bande che ho importato precedentemente,
+#              quindi quando vado a utilizzare im.plotRGB per scambiare nella visualizzazione queste bande per poter visualizzare il NIR
 # 1 = blue (b2)
 # 2 = green (b3)
 # 3 = red (b4)
@@ -115,10 +116,10 @@ plot(sentdol, col=magma(100))
 
 # Natural colors
 # Color hypnosis here: https://www.youtube.com/watch?v=0G383538qzQ
-im.plotRGB(sentdol, r=3, g=2, b=1)
+im.plotRGB(sentdol, r=3, g=2, b=1) # immagine standard, ogni colore ha la corretta banda
 
 # False colors
-im.plotRGB(sentdol, r=4, g=3, b=2)
+im.plotRGB(sentdol, r=4, g=3, b=2) # rappresento il Nir la componente rossa 
 
 # Exercise: plot the image using the NIR ontop of the green component of the RGB scheme
 im.plotRGB(sentdol, r=3, g=4, b=2)
