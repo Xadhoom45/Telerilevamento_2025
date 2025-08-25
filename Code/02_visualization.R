@@ -9,7 +9,7 @@ library(terra)
 library(imageRy)
 library(viridis)
 
-im.list()
+im.list()   # Produce un vettore contenente i nomi dei file salvati nel pacchetto imageRy
 # Sentinel bands:
 # https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/
  
@@ -17,12 +17,12 @@ im.list()
 # This is based on the following video:
 # https://www.youtube.com/watch?v=OJMpKCKH1hM
 
-b2 = im.import("sentinel.dolomites.b2.tif")
+b2 = im.import("sentinel.dolomites.b2.tif") # im.import() importa una immagine dal pacchetto imageRy
 
-cl = colorRampPalette(c("black", "dark grey", "light grey"))(100)
+cl = colorRampPalette(c("black", "dark grey", "light grey"))(100) # crea una nuova scala di colori con i colori "black", "..., e con n intervalli=100
 plot(b2, col=cl)
 
-cl = colorRampPalette(c("black", "dark grey", "light grey"))(3)
+cl = colorRampPalette(c("black", "dark grey", "light grey"))(3) # stessa cosa ma con solo 3 intervalli
 plot(b2, col=cl)
 # tlumley@u.washington.edu, Thomas Lumley
 
@@ -37,15 +37,15 @@ b3 = im.import("sentinel.dolomites.b3.tif")
 b4 = im.import("sentinel.dolomites.b4.tif")
 b8 = im.import("sentinel.dolomites.b8.tif")
 
-par(mfrow=c(1,4))
+par(mfrow=c(1,4))  # Imposto una griglia 1x4 per visualizzare le immagini plottate
 plot(b2)
 plot(b3)
 plot(b4)
 plot(b8)
 
-dev.off()
+dev.off() # Disattivo il tipo di visualizzazione impostata con par
 
-im.multiframe(1,4)
+im.multiframe(1,4) # Versione di imageRy del comando par(mfrow)
 plot(b2)
 plot(b3)
 plot(b4)
