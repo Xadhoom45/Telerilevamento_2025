@@ -18,7 +18,7 @@ im.list()
 # https://www.youtube.com/watch?v=OJMpKCKH1hM
 
 b2 = im.import("sentinel.dolomites.b2.tif")
-plot(b2, col=cl)
+plot(b2, col=b2)
 
 cl = colorRampPalette(c("black", "dark grey", "light grey"))(100)
 plot(b2, col=cl)
