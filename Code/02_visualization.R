@@ -128,8 +128,8 @@ pairs(sentdol)
 im.plotRGB(sentdol, r=2, g=4, b=3)
 
 im.multiframe(1, 2)
-im.plotRGB(sentdol, r=3, g=4, b=2)
+im.plotRGB(sentdol, r=3, g=4, b=2) # le due immagini non hanno differenze sostanziali
 im.plotRGB(sentdol, r=2, g=4, b=3)
 
 dev.off()
-im.plotRGB(sentdol, r=3, g=2, b=4)
+im.plotRGB(sentdol, r=3, g=2, b=4) 
