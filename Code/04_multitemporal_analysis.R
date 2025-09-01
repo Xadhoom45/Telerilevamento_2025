@@ -1,8 +1,10 @@
 # 18/03/2025
+# R code for performing multitemporal analysis
 install.packages("ggridges") #This is needed to create ridgeline plots
 library(imageRy)
 library(terra)
 library(viridis)
+
 im.list()
 
 EN_01 = im.import("EN_01.png")  # dati NO2 prodotti da automobili, gennaio 2020
@@ -32,13 +34,13 @@ plot(gr[[4]], col=rocket(100))
 
 grdif = gr[[1]] - gr[[4]]
 dev.off() 
-plot(grdif)
+plot(grdif) #  All the yellow parts are those in which there is a higher value in 2015
 
 # ridgeline plots
 im.ridgeline(gr, scale=1)
 im.ridgeline(gr, scale=2)
 im.ridgeline(gr, scale=2, palette="inferno")
-
+im.ridgeline(gr, scale=3, palette="inferno")
 im.list()
 
 # Exercise import the NDVi data from sentinel 
