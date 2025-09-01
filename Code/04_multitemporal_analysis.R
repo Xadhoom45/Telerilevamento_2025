@@ -21,8 +21,6 @@ plot(EN_13)
 
 EN_dif = EN_01[[1]] - EN_13[[1]] # differenza immagine tra marzo e gennaio
 plot(EN_dif)
-
-plot(EN_dif)
 plot(EN_dif, col=inferno(100))
 
 # importo dati ghiacci in groenlandia, dati tif rappresentano le temperature
@@ -56,12 +54,10 @@ im.ridgeline(ndvi, scale=2, palette="inferno")  # in questo momento il nome dei 
 #             Sentinel2_NDVI_2020-08-01.tif  
 #             Sentinel2_NDVI_2020-11-27.tif 
 
-
-
-                 
 names(ndvi) = c("02_Feb", "05_May", "08_Aug", "11_Nov")
 
-im.ridgeline(ndvi, scale=2)
+im.ridgeline(ndvi, scale=2)  # una volta cambiato il nome ai dataset, specificando solo ndvi mi calcola la ridgeline per tutt e e 4 le immagini
+                             # se voglio calcolare la ridgeline di una sola immagine --> im.rigdeline(ndvi[[2]], 2)
 im.ridgeline(ndvi, scale=2, palette="inferno")
 
 pairs(ndvi)
