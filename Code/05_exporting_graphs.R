@@ -4,10 +4,8 @@
 setwd("C:/Users/Utente/OneDrive/Desktop/Magistrale Geologia/Telerilevamento Geoecologico/file_export")
 getwd() # controllo che la working directory sia giusta
 
-plot(gr)
-
-png("greenland_output.png")
-plot(gr)
+png("greenland_output.png") # selezioni il formato in cui voglio esportarla e gli do il nome
+plot(gr) # poi plotto l'immagine che sono interessato a esportare
 dev.off()
 
 pdf("greenland_output.pdf")
