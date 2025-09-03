@@ -5,7 +5,7 @@
 library(terra)
 library(imageRy)
 library(ggplot2) # lo usiamo per creare dei grafici
-library(patchwork)
+library(patchwork)  # permette di combinare diversi oggetti ggplot in un singolo grafico
 
 
 im.list()
@@ -18,7 +18,7 @@ mato2006 = im.import("matogrosso_ast_2006209_lrg.jpg")
 mato2006 = flip(mato2006)
 plot(mato2006)
 
-mato1992c = im.classify(mato1992, num_cluster=2) #im.calssify (nome, cluster-> classificazione che crea delle classi)
+mato1992c = im.classify(mato1992, num_cluster=2) #im.classify (nome, cluster-> classificazione che crea delle classi)
 # Classe 1 = human ; classe 2 = foresta // ha fatto una unsupervised calssification, noi gli abbiamo detto di creare solo due gruppi 
 
 mato2006c = im.classify(mato2006, num_cluster=2)
@@ -37,21 +37,21 @@ tot2006 = ncell(mato2006c)
 perc2006 = freq(mato2006c) * 100 / tot2006
 # human = 54%, forest = 46%
 
-# Creating dataframe
-class = c("Forest","Human")
-y1992 = c(83,17)
+# Creating dataframe ---> come creare una tabella di dati
+class = c("Forest","Human")  # nome delle classi
+y1992 = c(83,17) # dati anno 1992
 y2006 = c(45,55)
-tabout = data.frame(class, y1992, y2006)
+tabout = data.frame(class, y1992, y2006) # data.frame --> funzione per creare una tabella di dati
 
 p1 = ggplot(tabout, aes(x=class, y=y1992, fill="class", color=class)) + 
-  geom_bar(stat="identity", fill="white") +
-  ylim(c(0,100))
+  geom_bar(stat="identity", fill="white") +  # geom.bar stabilisce che deve creare un grafico a barre; stat ="identity" gli sto dicendo che i valori per l'asse y glie li fornisco io
+  ylim(c(0,100))                            # dal dataframe 
 
 p2 = ggplot(tabout, aes(x=class, y=y2006, color=class)) + 
   geom_bar(stat="identity", fill="white") + #geom_bar funzione per definire il tipo di grafico (a punti, linee)
   ylim(c(0,100))
 
-# pacchetto patcheark -> può unire dei grafici creati con ggplot
+# pacchetto patchwork -> può unire dei grafici creati con ggplot
 p1 + p2 # mette a confronto i due grafici, i due grafici hanno scale diverse, dobbiamo riscalarle
 p1 / p2 # metto due grafici uno sopra all'alto e non uno accanto all'altro
 p0 = im.ggplot(mato1992)
